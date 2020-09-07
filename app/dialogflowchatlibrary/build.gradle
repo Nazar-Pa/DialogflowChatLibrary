@@ -1,0 +1,79 @@
+apply plugin: 'com.novoda.bintray-release'
+apply plugin: 'com.android.library'
+
+publish {
+
+    def groupProjectID = 'com.tyagiabhinav'
+    def artifactProjectID = 'androiddialogflowchatbot'
+    def publishVersionID = '0.1.9'
+
+    userOrg = 'abhi007tyagi'
+    repoName = 'AndroidDialogflowChatbot'
+    groupId = groupProjectID
+    artifactId = artifactProjectID
+    publishVersion = publishVersionID
+    desc = 'Android library for easy integration of Dialogflow based Chatbot. Library will provide a chat window with UI and action buttons to chat with bot designed with Google\'s  Dialogflow platform.'
+}
+
+android {
+    compileSdkVersion 29
+
+    defaultConfig {
+        minSdkVersion 23
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    implementation 'com.google.cloud:google-cloud-dialogflow:2.2.0'
+    // for Remote Procedure Call to avoid "No functional channel service provider found" error while creating SessionsClient
+    implementation 'io.grpc:grpc-okhttp:1.31.1'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+//    implementation 'com.google.auth:google-auth-library-oauth2-http:0.20.0'
+    implementation "android.arch.persistence.room:runtime:1.0.0"
+    annotationProcessor "android.arch.persistence.room:compiler:1.0.0"
+
+    implementation "android.arch.lifecycle:livedata:1.1.1"
+    annotationProcessor "android.arch.lifecycle:compiler:1.1.1"
+
+    implementation 'androidx.compose.material:material:0.1.0-dev16'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation "androidx.coordinatorlayout:coordinatorlayout:1.1.0"
+    implementation 'com.github.AnyChart:AnyChart-Android:1.1.2'
+    implementation 'devlight.io:arcprogressstackview:1.0.4'
+
+
+    implementation "com.google.android.gms:play-services-fitness:18.0.0"
+    implementation "com.google.android.gms:play-services-auth:17.0.0"
+    implementation 'com.google.android.material:material:1.1.0'
+
+}
